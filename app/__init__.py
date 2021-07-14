@@ -1,3 +1,4 @@
+from os.path import join, dirname, realpath
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, send_from_directory, request
@@ -12,7 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 
 
-UPLOAD_FOLDER = 'app\\static\\img'
+UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/img')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_post.sqlite3'
 app.config ['SQLALCHEMY_BINDS'] = {"projects": 'sqlite:///portfolio_project.sqlite3'}
