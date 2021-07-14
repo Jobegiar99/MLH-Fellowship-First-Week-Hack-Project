@@ -3,7 +3,7 @@ from flask import url_for
 
 class Factory:
     def createBlogPreview(self, posts):
-        body = (
+        body = \
             """
         <head>
 
@@ -29,8 +29,8 @@ class Factory:
                     align = "center"
                     
                 >
-                    <a href = """
-            + url_for("addPostForm")
+                    <a href = """ \
+            + url_for("addPostForm") \
             + """ style = "font-size: 1.5vw; color:black">
                         <img class = "img-fluid" src = "../static/img/blogContentBackground.png"/>
                         <div class = "createContainer" style = "font-size: 70%; top: 49%; left: 51%">
@@ -44,14 +44,12 @@ class Factory:
             <div class = "row" style = "overflow: auto; max-height: 80vh;">
   
         """
-        )
-        index = len(posts)
-        while index > -1:
-            index -= 1
+        posts = reversed(posts)
+        for post in posts:
             content = post.content
             title = post.title
             date = post.date
-            body += (
+            body += \
                 """
             <div class = "col-12 titlePrev"  >
                 <div 
@@ -61,29 +59,29 @@ class Factory:
                     
                 >
                     <img class = "img-fluid imageHolder" src = "../static/img/blogContentBackground.png"/>
-                        <div class = "dateContainer">"""
-                + str(date)
+                        <div class = "dateContainer">""" \
+                + str(date) \
                 + """</div> \
                      <a method = "get" style = "color:black" 
-                        href = """
+                        href = """ \
                 + url_for(
                     "postView",
                     id=post.id,
                     postTitle=title,
                     postContent=content,
                     postDate=date,
-                )
+                ) \
                 + """>
                        
                         <div class = "titleContainer">
-                            """
-                + title
+                            """ \
+                + title \
                 + """
                     </a>
                 </div>
             </div>
             """
-            )
+            
 
         body += """
                                   
@@ -94,7 +92,7 @@ class Factory:
         return body
 
     def createProjectPreview(self, projects):
-        body = (
+        body = \
             """
         <head>
 
@@ -120,8 +118,8 @@ class Factory:
                     align = "center"
                     
                 >
-                    <a href= """
-            + url_for("addProjectForm")
+                    <a href= """ \
+            + url_for("addProjectForm") \
             + """ style = "font-size: 1.5vw; color:black">
                         <img class = "img-fluid" src = "../static/img/blogContentBackground.png"/>
                         <div class = "createContainer h1" style = " top: 49%; left: 50%">
@@ -136,12 +134,9 @@ class Factory:
             </div>
             <div class = "row" style = "overflow: auto; max-height: 80vh;">
         """
-        )
-
-        index = len(projects)
-        while index > -1:
-            index -= 1
-            project = projects[index]
+        
+        projects = reversed(projects)
+        for project in projects:
             name = project.name
             shortDescription = project.shortDescription
             gif = project.gif
@@ -150,23 +145,23 @@ class Factory:
             githubURL = project.githubURL
             demoURL = project.demoURL
 
-            body += (
+            body += \
                 """
             <div class = "col-xs-6 col-m-4 col-xl-4 titlePrev" align = "center">
                 <br>
                 <div class="card" style="width: 100%; border-radius: 0px; color: white;  box-shadow: 10px 10px 20px black; text-shadow: 2px 2px 2px black;">
-                    <img class="card-img-top" src="../static/img/"""
-                + gif
+                    <img class="card-img-top" src="../static/img/""" \
+                + gif \
                 + """" alt="Card image cap">
                     <div class="card-body">
                         <div align = "center">
-                            <h5 class="card-title">"""
-                + name
+                            <h5 class="card-title">""" \
+                + name \
                 + """</h5>
-                            <p class="card-text">"""
-                + shortDescription
+                            <p class="card-text">""" \
+                + shortDescription \
                 + """</p>
-                            <a href="""
+                            <a href=""" \
                 + url_for(
                     "projectBigView",
                     id=project.id,
@@ -175,14 +170,14 @@ class Factory:
                     description=description,
                     githubURL=githubURL,
                     demoURL=demoURL,
-                )
+                ) \
                 + """  class="btn btn-dark" style = " border-radius: 0px;">Check this Project</a>
                         </div>
                     </div>
                 </div>
             </div> 
             """
-            )
+            
 
         body += """
            </div>
