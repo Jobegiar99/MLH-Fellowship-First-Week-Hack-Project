@@ -13,11 +13,10 @@ load_dotenv()
 app = Flask(__name__)
 
 
-
-UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/img')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_post.sqlite3'
-app.config ['SQLALCHEMY_BINDS'] = {"projects": 'sqlite:///portfolio_project.sqlite3'}
+UPLOAD_FOLDER = join(dirname(realpath(__file__)), "static/img")
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///portfolio_post.sqlite3"
+app.config["SQLALCHEMY_BINDS"] = {"projects": "sqlite:///portfolio_project.sqlite3"}
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
