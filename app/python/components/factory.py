@@ -116,8 +116,10 @@ class Factory:
             </div>
             <div class = "row" style = "overflow: auto; max-height: 80vh;">
         """
-
-        for project in projects:
+        index = len(projects)
+        while index > -1:
+            index -= 1
+            project = projects[index]
             name = project.name
             shortDescription = project.shortDescription
             gif = project.gif
