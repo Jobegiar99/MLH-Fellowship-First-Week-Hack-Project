@@ -3,7 +3,7 @@ from flask import url_for
 
 class Factory:
     def createProjectPreview(self, projects):
-        body = \
+        body = (
             """
         <head>
 
@@ -31,8 +31,8 @@ class Factory:
                     align = "center"
                     
                 >
-                    <a href= """ \
-            + url_for("adminCheckProjects", whatToDo = "add", id = "-1") \
+                    <a href= """
+            + url_for("adminCheckProjects", whatToDo="add", id="-1")
             + """ style = "font-size: 1.5vw; color:black">
                         <img class = "img-fluid" src = "../static/img/blogContentBackground.png"/>
                         <div class = "createContainer h1" style = " top: 49%; left: 50%">
@@ -47,7 +47,8 @@ class Factory:
             </div>
             <div class = "row" style = "overflow: auto; max-height: 80vh;">
         """
-        
+        )
+
         projects = reversed(projects)
         for project in projects:
             name = project.name
@@ -58,7 +59,7 @@ class Factory:
             githubURL = project.githubURL
             demoURL = project.demoURL
 
-            body += \
+            body += (
                 """
             <div class = "col-xs-6 col-m-4 col-xl-4 titlePrev" align = "center">
                 <br>
@@ -67,51 +68,51 @@ class Factory:
                     <div class = "row">
                         <div class = "col">
 
-                            <a href=""" \
-                            + url_for(
-                                "adminCheckProjects",
-                                id=project.id,
-                                projectName=name,
-                                videoURL=videoURL,
-                                description=description,
-                                githubURL=githubURL,
-                                demoURL=demoURL,
-                                whatToDo = "edit"
-                            ) \
+                            <a href="""
+                + url_for(
+                    "adminCheckProjects",
+                    id=project.id,
+                    projectName=name,
+                    videoURL=videoURL,
+                    description=description,
+                    githubURL=githubURL,
+                    demoURL=demoURL,
+                    whatToDo="edit",
+                )
                 + """  class="btn btn-dark" style = " border-radius: 0px;">Edit</a>
 
                         </div>
 
                         <div class = "col">
 
-                            <a href=""" \
-                            + url_for(
-                                "adminCheckProjects",
-                                id=project.id,
-                                projectName=name,
-                                videoURL=videoURL,
-                                description=description,
-                                githubURL=githubURL,
-                                demoURL=demoURL,
-                                whatToDo = "delete"
-                            ) \
+                            <a href="""
+                + url_for(
+                    "adminCheckProjects",
+                    id=project.id,
+                    projectName=name,
+                    videoURL=videoURL,
+                    description=description,
+                    githubURL=githubURL,
+                    demoURL=demoURL,
+                    whatToDo="delete",
+                )
                 + """  class="btn btn-dark" style = " border-radius: 0px;">Delete</a>
 
                         </div>
                     </div>
                     <br>
-                    <img class="card-img-top" src="../static/img/""" \
-                + gif \
+                    <img class="card-img-top" src="../static/img/"""
+                + gif
                 + """" alt="Card image cap">
                     <div class="card-body">
                         <div align = "center">
-                            <h5 class="card-title">""" \
-                + name \
+                            <h5 class="card-title">"""
+                + name
                 + """</h5>
-                            <p class="card-text">""" \
-                + shortDescription \
+                            <p class="card-text">"""
+                + shortDescription
                 + """</p>
-                            <a href=""" \
+                            <a href="""
                 + url_for(
                     "projectBigView",
                     id=project.id,
@@ -120,27 +121,29 @@ class Factory:
                     description=description,
                     githubURL=githubURL,
                     demoURL=demoURL,
-                ) \
+                )
                 + """  class="btn btn-dark" style = " border-radius: 0px;">Check this Project</a>
                         </div>
                     </div>
                 </div>
             </div> 
             """
-            
+            )
 
-        body += """
+        body += (
+            """
            </div>
             <br>
             <div class = "row">
                 <div class = "col" align = "center">
-                  <a href=""" \
-                + url_for("index") \
-                + """  class="btn btn-dark" style = " border-radius: 0px; font-size: 2em">Return</a>
+                  <a href="""
+            + url_for("index")
+            + """  class="btn btn-dark" style = " border-radius: 0px; font-size: 2em">Return</a>
                 </div>
             </div>
         </div>
             
         </body>
         """
+        )
         return body
