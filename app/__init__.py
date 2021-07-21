@@ -163,7 +163,3 @@ def updateProject():
         db.session.commit()
 
     return index()
-
-@app.route("/health")
-def health():
-    return "Hp: 100"
