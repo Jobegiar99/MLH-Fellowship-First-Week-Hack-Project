@@ -1,1 +1,1 @@
-web: flask run wsgi.py:app
+web:python wsgi:app
