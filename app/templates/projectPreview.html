@@ -20,7 +20,7 @@
         <div 
             class = "col-12 content"
             align = "center"
-            onclick= "window.location.href='{{ url_for( 'addProjectForm') }}';""
+            onclick= "window.location.href='{{ url_for( 'adminCheckProjects', whatToDo = 'add') }}';""
         >
             <img class = "img-fluid" src = "../static/img/blogContentBackground.png"/>
             <div class = "createContainer" style = "font-size: 70%; top: 49%; left: 51%">
@@ -46,4 +46,5 @@
             </div>
         </div>              
     </div>
+    <div class = "row">
 </body>
