@@ -7,6 +7,8 @@ class Factory:
             """
         <head>
 
+
+
             <meta charset="utf-8">
             <title>Jobegiar99's Blog</title>
             <meta name="description" content="The HTML5 Herald">
