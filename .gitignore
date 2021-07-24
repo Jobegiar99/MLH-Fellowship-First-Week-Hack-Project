@@ -4,4 +4,3 @@ __pycache__
 .env
 python3-virtualend
 adminCheck.py
-.sqlite3
