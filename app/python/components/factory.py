@@ -3,6 +3,7 @@ from flask import url_for
 
 class Factory:
     def createProjectPreview(self, projects):
+        projects.sort(key = lambda p: int(p.pindex))
         body = \
             """
         <head>
@@ -10,9 +11,10 @@ class Factory:
 
 
             <meta charset="utf-8">
-            <title>Jobegiar99's Blog</title>
+            <title>Jobegiar99's Projects</title>
             <meta name="description" content="The HTML5 Herald">
             <meta name="author" content="SitePoint">
+            <link rel='icon' href='./static/img/mudkip.png'>
             <meta content="width=device-width, initial-scale=1" name="viewport" />
             <link rel="stylesheet" href="../static/styles/projectPreview.css">
             <link 
@@ -48,7 +50,7 @@ class Factory:
             <div class = "row" style = "overflow: auto; max-height: 80vh;">
         """
         
-        projects = reversed(projects)
+        
         for project in projects:
             name = project.name
             shortDescription = project.shortDescription

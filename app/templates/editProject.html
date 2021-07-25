@@ -5,6 +5,7 @@
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
     <link rel="stylesheet" href="../static/styles/forms.css">
+    <link rel='icon' href='./static/img/mudkip.png'>
     <link 
         rel="stylesheet" 
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
@@ -65,7 +66,14 @@
                     <input required name = "projectDemoURL" value = {{demoURL}} placeholder="If not available, use the github repo URL" type="url" accept="image/gif" class="form-control">
                 </div>
             </div>
-            
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "index">Project Index</label>
+                    <input requires name = "index" value = '{{projectIndex}}' placeholder="Defines the order when sorting" type="text" class = "form-control">
+                </div>
+            </div>
+
             <br>
             <div class = "row">
                 <div class = "col">

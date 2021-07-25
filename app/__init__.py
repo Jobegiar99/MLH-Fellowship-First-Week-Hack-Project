@@ -15,8 +15,7 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/img')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_post.sqlite3'
-app.config ['SQLALCHEMY_BINDS'] = {"projects": 'sqlite:///portfolio_project.sqlite3'}
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_project.sqlite3'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -24,20 +23,7 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
 db = SQLAlchemy(app)
 
-class Post(db.Model):
-    __tablename__ = 'post'
-    id = db.Column('postID', db.Integer, primary_key = True, autoincrement = True)
-    title = db.Column(db.String())
-    content = db.Column(db.String())  
-    date = db.Column(db.Date())
-
-    def __init__(self, title, content,date):
-        self.title = title;
-        self.content = content;
-        self.date = date
-
 class Project(db.Model):
-    __bind_key__ = 'projects'
     id = db.Column('projectID', db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String())
     shortDescription = db.Column(db.String(35))
@@ -46,9 +32,10 @@ class Project(db.Model):
     description = db.Column(db.String())
     githubURL = db.Column(db.String())
     demoURL = db.Column(db.String())
+    pindex = db.Column(db.String())
 
     
-    def __init__(self, name, shortDescription, gif, videoURL, description, githubURL,demoURL):
+    def __init__(self, name, shortDescription, gif, videoURL, description, githubURL,demoURL,pindex):
         self.name = name
         self.shortDescription = shortDescription
         self.gif = gif
@@ -56,6 +43,7 @@ class Project(db.Model):
         self.description = description
         self.githubURL = githubURL
         self.demoURL = demoURL
+        self.pindex = pindex
 
 db.create_all()
 db.session.commit()
@@ -87,11 +75,12 @@ def createProject():
         description = request.form["projectDescription"]
         githubURL = request.form["projectGithubURL"]
         demoURL = request.form["projectDemoURL"]
+        pindex = request.form["index"]
         gifName = gif.filename.replace(" ","_")
         gif.filename = gifName
         gif.save(os.path.join(UPLOAD_FOLDER,secure_filename(gif.filename)))
 
-        project = Project(name, shortDescription, gifName, videoURL, description, githubURL,demoURL)
+        project = Project(name, shortDescription, gifName, videoURL, description, githubURL,demoURL, pindex)
         db.session.add(project)
         db.session.commit()
         return projects()
@@ -152,12 +141,15 @@ def updateProject():
         description = request.form["projectDescription"]
         githubURL = request.form["projectGithubURL"]
         demoURL = request.form["projectDemoURL"]
+        pIndex = request.form["index"]
         gifName = gif.filename.replace(" ","_")
         filename = gifName
+        
         gif.save(os.path.join(UPLOAD_FOLDER,secure_filename(gif.filename)))
+
         
         Project.query.filter_by(id=pID).update({"name":name,"shortDescription":shortDescription,"gif":gifName,"videoURL":videoURL,\
-                                                "description":description,"githubURL":githubURL,"demoURL":demoURL})
+                                                "description":description,"githubURL":githubURL,"demoURL":demoURL, "pindex": pIndex})
 
         db.session.commit()
 
