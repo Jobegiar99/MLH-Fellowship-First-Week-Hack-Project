@@ -16,18 +16,18 @@
 </head>
 
 <body class = "container fluid" id = "formsContainer">
-    <form action ="/createProject" method = "post" enctype="multipart/form-data">
+    <form action ="/updateProject" method = "post" enctype="multipart/form-data">
         <div align = "center" class = "form-group">
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "projectName">Project Name</label>
-                    <input name = "projectName" type="text" class="form-control" id="imageTitle" placeholder="Type the name of the project">
+                    <input name = "projectName" type="text" class="form-control" value = '{{projectName}}}'  id="imageTitle" placeholder="Type the name of the project">
                 </div>
             </div>
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "projectShortDescription">Short Description</label>
-                    <input name = "projectShortDescription" type="text" placeholder="Will be used for the preview :)" maxlength="35" class="form-control" id="commentDate" >
+                    <input name = "projectShortDescription" type="text" value = '{{shortDescription}}' placeholder="Will be used for the preview :)" maxlength="35" class="form-control" id="commentDate" >
                 </div>
             </div>
 
@@ -42,45 +42,51 @@
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "projectVideoURL">Video URL</label>
-                    <input name = "projectVideoURL" type="url" placeholder="/embed/ format for youtube videos please!"  class="form-control" id="commentDate" >
+                    <input name = "projectVideoURL" type="url" value = {{videoURL}} placeholder="/embed/ format for youtube videos please!"  class="form-control" id="commentDate" >
                 </div>
             </div>
 
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "projectDescription">Description</label>
-                    <input name = "projectDescription" placeholder="Let them know everything about this project!" type="text"  class="form-control" id="commentDate" >
+                    <dd><input name = "projectDescription" value = '{{longDescription}}' placeholder="Let them know everything about this project!" type="text"  class="form-control" id="commentDate" ></dd>
                 </div>
             </div>
 
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "projectGithubURL">Github URL</label>
-                    <input required name = "projectGithubURL" placeholder = "Show them your work :)" type="url" accept="image/gif" class="form-control">
+                    <input required name = "projectGithubURL" value = {{githubURL}} placeholder = "Show them your work :)" type="url" accept="image/gif" class="form-control">
                 </div>
             </div>
 
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "projectDemoURL">Demo URL</label>
-                    <input required name = "projectDemoURL" placeholder="If not available, use the github repo URL" type="url" accept="image/gif" class="form-control">
+                    <input required name = "projectDemoURL" value = {{demoURL}} placeholder="If not available, use the github repo URL" type="url" accept="image/gif" class="form-control">
                 </div>
             </div>
 
             <div class = "row">
                 <div class = "col">
                     <label class = "formLabel" for = "index">Project Index</label>
-                    <input requires name = "index" placeholder="Defines the order when sorting" type="text" class = "form-control">
+                    <input requires name = "index" value = '{{projectIndex}}' placeholder="Defines the order when sorting" type="text" class = "form-control">
                 </div>
             </div>
-            
+
             <br>
             <div class = "row">
                 <div class = "col">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-            
         </div>
     </form>
+    <div class = "row" align = "center">
+        <div class = "col">
+            <form action = "./projects" method = "post">
+                <button class = "btn btn-dark"> abort the mission !!</button>
+            </form>
+        </div>
+    </div>
 </body>
